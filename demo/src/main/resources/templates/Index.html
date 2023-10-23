@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thyneleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action="@{/insertar}" th:object="${student}" method="post">
+		<span>Nombre:</span>
+		<input type="text">
+		<span>Apellido:</span>
+		<input type="text">
+		<input type="submit">
+	</form>
+
+</body>
+</html>
