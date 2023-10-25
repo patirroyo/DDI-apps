@@ -1,18 +1,17 @@
 <!DOCTYPE html>
-
 <html xmlns:th="http://www.thyneleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="@{/insertar}" th:object="${student}" method="post">
+	<!-- esto se enviara a localhost:8080/insertStudent -->
+	<form th:action="@{/insertStudent}" th:object="${student}">
 		<span>Nombre:</span>
-		<input type="text">
+		<input type="text" th:field="*{nombre}"/>
 		<span>Apellido:</span>
-		<input type="text">
-		<input type="submit">
+		<input type="text" th:field="*{apellido}"/>
+		<input type="submit" value="Enviar datos"/>
 	</form>
-
 </body>
 </html>
