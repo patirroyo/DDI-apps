@@ -11,6 +11,8 @@ import com.example.demo.model.Student;
 @Controller
 public class StudentController {
 	@Autowired // usa esta interfaz
+	// @Qualifier(value = "postgres") // me conectas el que tenga este valor
+	// automáticamente
 	DBConnection db;
 
 	// localhost:8080/insertStudent
