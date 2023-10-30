@@ -35,7 +35,7 @@
 <dependency>
     <groupId>com.h2database</groupId>
     <artifactId>h2</artifactId>
-    <scope>test</scope>
+   <!-- <scope>test</scope><esto significa que esto solo está disponible para la cparpeta src/test/java-->
 </dependency>
 
 		<dependency>

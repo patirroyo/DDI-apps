@@ -18,7 +18,9 @@ public class HelloController {
 	// localhost:8080/
 	@RequestMapping("/")
 	public String index(Model model) {
+		// necesario para que el formulario funcione
 		model.addAttribute("student", new Student());
+		// devuelve a la página index
 		return "index";
 	}
 
