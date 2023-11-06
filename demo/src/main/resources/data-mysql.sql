@@ -1,1 +1,1 @@
-insert into students(nombre, apellidos) values('mysql', 'saz');
+insert into students(nombre, apellido) values('mysql', 'saz');

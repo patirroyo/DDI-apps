@@ -1,10 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thyneleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-
+	<table>
+		<th>
+			<td>Nombre</td>
+			<td>Apellido</td>
+		</th>
+		<tbody>
+			<tr th:each="stud: ${estudiantes}">
+				<td th:text="${stud.nombre}"/>
+				<td th:text="${stud.apellido}"/>
+			</tr>
+		</tbody>
+	</table>
 </body>
 </html>
