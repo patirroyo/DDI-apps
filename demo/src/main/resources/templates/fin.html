@@ -6,12 +6,12 @@
 </head>
 <body>
 	<table>
-		<th>
-			<td>Nombre</td>
-			<td>Apellido</td>
-		</th>
+		<th>ID</th>
+		<th>Nombre</th>
+		<th>Apellido</th>
 		<tbody>
 			<tr th:each="stud: ${estudiantes}">
+				<td th:text="${stud.id}"/>
 				<td th:text="${stud.nombre}"/>
 				<td th:text="${stud.apellido}"/>
 			</tr>

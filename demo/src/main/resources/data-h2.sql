@@ -1,1 +1,1 @@
-insert into students(nombre, apellido) values('h2', 'saz');,
+insert into students(nombre, apellido) values('h2', 'saz');
