@@ -3,6 +3,7 @@ package com.example.demo.repository;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -25,7 +26,21 @@ public class StudentRepository {
 				student.getApellido(), student.getId());
 	}
 
+	public void delete(Integer id) {
+		jdbcTemplate.update("DELETE FROM STUDENTS WHERE id=?", new Object[] { id });
+	}
+
 	public List<Student> findAll() {
 		return jdbcTemplate.query("SELECT * FROM STUDENTS", new StudentRowMapper());
+	}
+
+	public Student findById(long id) {
+		return jdbcTemplate.queryForObject("select * from STUDENTS where id=?",
+				new BeanPropertyRowMapper<Student>(Student.class), new Object[] { id });
+	}
+
+	public List<Student> searchByNombreOrApellido(String userInput) {
+		return jdbcTemplate.query("SELECT * FROM STUDENTS WHERE nombre = ? OR apellido = ?", new StudentRowMapper(),
+				userInput, userInput);
 	}
 }

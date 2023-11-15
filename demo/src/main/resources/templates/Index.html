@@ -12,7 +12,7 @@
 	<!-- esto se enviara a localhost:8080/insertStudent -->
 	<form th:action="@{/insertStudent}" th:object="${student}">
 		<span>Id:</span>
-		<input type="number" th:field="*{id}" disabled/>
+		<input type="number" th:field="*{id}" hidden/>
 		<span>Nombre:</span>
 		<input type="text" th:field="*{nombre}"/>
 		<span>Apellido:</span>
