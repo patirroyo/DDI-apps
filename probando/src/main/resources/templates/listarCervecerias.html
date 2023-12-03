@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thyneleaf.org">
+<head>
+<link href='https://fonts.googleapis.com/css?family=JetBrains Mono' rel='stylesheet'>
+<style>
+body {
+    font-family: 'JetBrains Mono';
+}
+</style>
+<meta charset="UTF-8">
+
+<title>Las cervecerias</title>
+</head>
+<body>
+	<table border="1px" style="display: table; margin:auto; margin-top:200px; width: 50%;border-collapse: collapse;">
+		<th>ID</th>
+		<th>Nombre</th>
+		<th colspan="2">Acciones</th>
+		<tbody>
+			<tr th:each="brewery: ${cervecerias}">
+				<td th:text="${brewery.id}"/>
+				<td th:text="${brewery.nombre}"/>
+				<td><a th:href="@{'/updateBrewery/'+${brewery.id}}">Update</a></td>
+				<td><a th:href="@{'/deleteBrewery/'+${brewery.id}}" th:data-confirm-delete="|Estás seguro que quieres destruir la cervecería ${brewery.nombre} y todas sus cervezas?|" onclick="if (!confirm(this.getAttribute('data-confirm-delete'))) return false">Delete</a></td>
+			</tr>
+		</tbody>
+		<br>
+		<a href="/../">Volver al indice</a>
+		<br>
+	</table>
+</body>
+</html>

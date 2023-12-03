@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thyneleaf.org">
+<head>
+	<link href='https://fonts.googleapis.com/css?family=JetBrains Mono' rel='stylesheet'>
+<style>
+body {
+    font-family: 'JetBrains Mono';
+}
+</style>
+<meta charset="UTF-8">
+<title>Inserta Birra</title>
+</head>
+<body>
+	<div style="display: table; margin:auto; margin-top:200px; border: solid 1px black;width: 50%;">
+		
+		<br>
+		<br>
+		<!-- esto se enviara a localhost:8080/insertStudent -->
+		<span>Insertar o Actualizar Cervecería:</span>
+		<br>
+		<form th:action="@{/insertBeer}" th:object="${beer}">
+			<input type="number" th:field="*{id}" hidden/>
+			<span>Nombre:</span>
+			<input type="text" th:field="*{nombre}"/>
+			<br>
+			<label for="fechaLanzamiento">Fecha de Lanzamiento:</label>
+       	 	<input type="date" id="fechaLanzamiento" th:field="*{fechaLanzamiento}" class="form-control" />
+			<br>
+			<label for="brewery">Cervecería:</label>
+			<select id="brewery" th:field="*{brewery_id}">
+    				<option th:each="i : ${cervecerias}" th:value="${i.id}" th:text="${i.nombre}">
+    				</option>
+			</select>
+			<input type="submit" value="Enviar datos"/>
+		</form>
+		<br>
+		<br>
+		<br>
+		<a href="/../">Volver al indice</a>
+		<br>
+	</div>
+</body>
+</html>

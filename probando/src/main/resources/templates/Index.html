@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thyneleaf.org">
+<head>
+	<link href='https://fonts.googleapis.com/css?family=JetBrains Mono' rel='stylesheet'>
+<style>
+body {
+    font-family: 'JetBrains Mono';
+}
+</style>
+<meta charset="UTF-8">
+<title>Index</title>
+</head>
+<body>
+	<div style="display: table; margin:auto; margin-top:200px; border: solid 1px black;width: 50%;">
+		
+		<br>
+		<br>
+		<!-- esto se enviara a localhost:8080/insertStudent -->
+		<h1>Lo de las birras:</h1>
+		<br>
+		<a th:href="@{insertCerveza}">Insertar Cerveza</a>
+		<br>
+		<a th:href="@{listarBeers}">Listar Todas las Cervezas</a>
+		<br>
+		<br>
+		<a th:href="@{insertCerveceria}">Insertar Cerveceria</a>
+		<br>
+		<a th:href="@{listarBreweries}">Listar Todas las Cervecerías</a>
+		<br>
+		<br>
+	</div>
+</body>
+</html>

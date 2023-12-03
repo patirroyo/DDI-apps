@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thyneleaf.org">
+<head>
+<link href='https://fonts.googleapis.com/css?family=JetBrains Mono' rel='stylesheet'>
+<style>
+body {
+    font-family: 'JetBrains Mono';
+}
+</style>
+<meta charset="UTF-8">
+<title>Las cervezas</title>
+</head>
+<body>
+	<table border="1px" style="display: table; margin:auto; margin-top:200px; width: 50%;border-collapse: collapse;">
+		<th>ID</th>
+		<th>Nombre</th>
+		<th>Fecha de Lanzamiento</th>
+		<th>Cervecería</th>
+		<th>Es Antigua</th>
+		<th colspan="2">Acciones</th>
+		<tbody>
+			<tr th:each="beer: ${cervezas}">
+				<td th:text="${beer.id}"/>
+				<td th:text="${beer.nombre}"/>
+				<td th:text="${beer.fechaLanzamiento}"/>
+				<td th:text="${beer.brewery.nombre}"/>
+				<td th:text="${beer.is_old}"/>
+				<td><a th:href="@{'/updateBeer/'+${beer.id}}">Update</a></td>
+				<td><a th:href="@{'/deleteBeer/'+${beer.id}}">Delete</a></td>
+			</tr>
+		</tbody>
+		<br>
+		<a href="/../">Volver al indice</a>
+		<br>
+	</table>
+</body>
+</html>
