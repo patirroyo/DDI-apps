@@ -5,18 +5,20 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<table border="1px" style="display: table; margin:auto; margin-top:200px; width: 50%;border-collapse: collapse;">
-		<th>ID</th>
-		<th>Nombre</th>
-		<th>Apellido</th>
-		<th>Acciones</th>
+	<table id="tablaEstudiantes" border=1 style="display: table; margin:auto; margin-top:200px; width: 50%;border-collapse: collapse;">
+		<thead>
+			<th>ID</th>
+			<th>Nombre</th>
+			<th>Apellido</th>
+			<th colspan=2>Acciones</th>
+		</thead>
 		<tbody>
 			<tr th:each="stud: ${estudiantes}">
 				<td th:text="${stud.id}"/>
 				<td th:text="${stud.nombre}"/>
 				<td th:text="${stud.apellido}"/>
-				<td><a th:href="@{'/updateStudent/'+${stud.id}}">Update</a></td>
-				<td><a th:href="@{'/deleteStudent/'+${stud.id}}">Delete</a></td>
+				<td><a th:id="@{'updateBtn'+${stud.nombre}}" th:href="@{'/updateStudent/'+${stud.id}}">Update</a></td>
+				<td><a th:id="@{'deleteBtn'+${stud.nombre}}" th:href="@{'/deleteStudent/'+${stud.id}}">Delete</a></td>
 			</tr>
 		</tbody>
 	</table>
