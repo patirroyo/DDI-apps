@@ -6,40 +6,22 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class InsertAndDeleteSquirtleTest {
-	private WebDriver driver;
-	private Map<String, Object> vars;
-	JavascriptExecutor js;
 
-	@BeforeEach
-	public void setUp() {
-		System.setProperty("webdriver.chrome.driver", "/Users/alberto/Downloads/chromedriver-mac-arm64/chromedriver");
-		driver = new ChromeDriver();
-		js = (JavascriptExecutor) driver;
-		vars = new HashMap<String, Object>();
-	}
-
-	@AfterEach
-	public void tearDown() {
-		driver.quit();
-	}
 
 	@Test
 	public void insertAndDeleteSquirtleTest() {
 		// given
 		driver.get("http://localhost:8080/");
-		int width = 1373;
-		int height = 929;
-		driver.manage().window().setSize(new Dimension(width, height));
+		driver.manage().window().maximize();
 
 		// when
 		driver.findElement(By.id("nombre")).sendKeys("Squirtl");
@@ -50,6 +32,25 @@ public class InsertAndDeleteSquirtleTest {
 		// then
 		assertEquals(driver.findElement(By.xpath("//td[contains(.,'Squirtl')]")).getText(), "Squirtl");
 		assertEquals(driver.findElement(By.xpath("//td[contains(.,\'blastoise\')]")).getText(), "blastoise");
+
+		// CleanUp
 		driver.findElement(By.id("deleteBtnSquirtl")).click();
+	}
+
+	private static WebDriver driver;
+	private static Map<String, Object> vars;
+	static JavascriptExecutor js;
+
+	@BeforeAll
+	public static void setUp() {
+		System.setProperty("webdriver.chrome.driver", "/Users/alberto/Downloads/chromedriver-mac-arm64/chromedriver");
+		driver = new ChromeDriver();
+		js = (JavascriptExecutor) driver;
+		vars = new HashMap<String, Object>();
+	}
+
+	@AfterAll
+	public static void tearDown() {
+		driver.quit();
 	}
 }
