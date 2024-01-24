@@ -16,13 +16,7 @@ import com.example.demo.service.StudentService;
 
 @Controller
 public class StudentController {
-	@Autowired // usa esta interfaz
-	// @Qualifier(value = "postgres") // me conectas el que tenga este valor
-	// automáticamente
-	DBConnection db;
 
-	@Autowired
-	JdbcTemplate jdbcTemplate;
 
 	@Autowired
 	StudentService service;
@@ -69,9 +63,12 @@ public class StudentController {
 		return "fin";
 	}
 
-	public Student findById(long id) {
-		Student stud = service.searchStudentById(id);
-		return stud;
+	public StudentService getService() {
+		return service;
+	}
+
+	public void setService(StudentService service) {
+		this.service = service;
 	}
 
 }

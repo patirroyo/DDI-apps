@@ -17,7 +17,7 @@ public class StudentRepository {
 	JdbcTemplate jdbcTemplate;
 
 	public void insert(Student student) {
-		jdbcTemplate.update("insert into students(nombre, apellido) values(?, ?);", student.getNombre(),
+		jdbcTemplate.update("insert into students(id, nombre, apellido) values(?, ?, ?);", student.getId(),student.getNombre(),
 				student.getApellido());
 	}
 
@@ -42,5 +42,13 @@ public class StudentRepository {
 	public List<Student> searchByNombreOrApellido(String userInput) {
 		return jdbcTemplate.query("SELECT * FROM STUDENTS WHERE nombre = ? OR apellido = ?", new StudentRowMapper(),
 				userInput, userInput);
+	}
+
+	public JdbcTemplate getJdbcTemplate() {
+		return jdbcTemplate;
+	}
+
+	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+		this.jdbcTemplate = jdbcTemplate;
 	}
 }

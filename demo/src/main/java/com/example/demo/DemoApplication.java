@@ -33,7 +33,7 @@ public class DemoApplication implements CommandLineRunner
 	@Override
 	public void run(String... args) throws Exception {
 
-		logger.info("estudiante id 10001 -> {}", repository.findById(1));
+		
 	}
 }
 
