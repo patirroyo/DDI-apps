@@ -1,12 +1,18 @@
 package com.example.demo.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import lombok.Data;
 import lombok.Getter;
 
 @Data // con esto se hacen los getter y los setter
 @Getter
 //@AllArgsConstructor
+@Entity
 public class Student {
+	@Id
+	@GeneratedValue
 	private Integer id;
 	private String nombre;
 	private String apellido;

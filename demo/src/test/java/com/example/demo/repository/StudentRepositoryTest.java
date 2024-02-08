@@ -1,15 +1,15 @@
 package com.example.demo.repository;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import org.junit.jupiter.api.AfterAll;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -29,13 +29,14 @@ class StudentRepositoryTest {
 	@Autowired
 	JdbcTemplate template;
 	
+	@Autowired
 	StudentRepository repo;
 	
 	@Test
 	void testInsertShouldBeOk() {
 		
 		Student student = new Student(5, "Fernando", "Del Pino");
-		assertDoesNotThrow(() ->repo.insert(student));//función anónima
+		assertDoesNotThrow(() -> repo.save(student));// función anónima
 
 	}
 	@Test
@@ -43,8 +44,10 @@ class StudentRepositoryTest {
 		Student student = new Student(5, "Fernando", "Del Pino");
 		
 		try {//esta es la vieja forma
-			repo.insert(student);
-			repo.insert(student);
+				// repo.insert(student);
+				// repo.insert(student);
+			repo.save(student);
+			repo.save(student);
 			//aqui jamas debería llegar
 			fail("este código no se debe ejecutar");
 		}
@@ -53,8 +56,10 @@ class StudentRepositoryTest {
 		//manera actual
 		assertThrows(DuplicateKeyException.class, 
 				() -> {
-					repo.insert(student);
-					repo.insert(student);
+					// repo.insert(student);
+					// repo.insert(student);
+					repo.save(student);
+					repo.save(student);
 				}, "Name too long"
 			);
 	}
@@ -65,7 +70,8 @@ class StudentRepositoryTest {
 				+ "FernandoFernandoFernandoFernando", "Del Pino");
 		assertThrows(DataIntegrityViolationException.class, 
 				() -> {
-					repo.insert(student);
+					repo.save(student);
+					// repo.insert(student);
 				}, "Name too long"
 			);
 
@@ -75,12 +81,12 @@ class StudentRepositoryTest {
 //	}
 	@Test
 	void testFindAll() {
-		List<Student> lista = repo.findAll();
+		List<Student> lista = (List<Student>) repo.findAll();
 		//assertEquals(2, lista.size());
 		assertTrue(lista.isEmpty());
 		
-		repo.insert(new Student (1, "Alberto", "Saz"));
-		lista = repo.findAll();
+		repo.save(new Student(1, "Alberto", "Saz"));
+		lista = (List<Student>) repo.findAll();
 		assertFalse(lista.isEmpty());
 		assertEquals(1, lista.size());
 
@@ -88,16 +94,16 @@ class StudentRepositoryTest {
 	
 	@Test
 	void testDelete() {
-		List<Student> lista = repo.findAll();
+		List<Student> lista = (List<Student>) repo.findAll();
 		assertTrue(lista.isEmpty());
 		
-		repo.insert(new Student (1, "Alberto", "Saz"));
-		lista = repo.findAll();
+		repo.save(new Student(1, "Alberto", "Saz"));
+		lista = (List<Student>) repo.findAll();
 		assertFalse(lista.isEmpty());
 		assertEquals(1, lista.size());
 		
-		repo.delete(1);
-		lista = repo.findAll();
+		repo.deleteById(1);
+		lista = (List<Student>) repo.findAll();
 		assertTrue(lista.isEmpty());
 		
 		
@@ -113,9 +119,9 @@ class StudentRepositoryTest {
 
 	@BeforeEach
 	void setUp() throws Exception {
-		repo = new StudentRepository();
-		assertNotNull(template);
-		repo.setJdbcTemplate(template);
+		// repo = new StudentRepository();
+		// assertNotNull(template);
+		// repo.setJdbcTemplate(template);
 		JdbcTestUtils.deleteFromTables(template, "Students");//cada vez que hacemos un test, limpiamos la base de datos
 	}
 

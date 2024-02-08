@@ -2,16 +2,19 @@ package com.example.demo.repository;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.model.Student;
-import com.example.demo.model.StudentRowMapper;
 
 @Repository
-public class StudentRepository {
+public interface StudentRepository extends CrudRepository<Student, Integer> {
+
+	public List<Student> findByNombreOrApellido(String nombre, String apellido);
+
+}
+
+/*public class StudentRepository {
 
 	@Autowired
 	JdbcTemplate jdbcTemplate;
@@ -51,4 +54,4 @@ public class StudentRepository {
 	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
 	}
-}
+}*/
