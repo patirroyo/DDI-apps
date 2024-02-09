@@ -43,7 +43,8 @@ public class InsertAndDeleteSquirtleTest {
 
 	@BeforeAll
 	public static void setUp() {
-		System.setProperty("webdriver.chrome.driver", "/Users/alberto/Downloads/chromedriver-mac-arm64/chromedriver");
+		//System.setProperty("webdriver.chrome.driver", "/Users/alberto/Downloads/chromedriver-mac-arm64/chromedriver");
+		System.setProperty("webdriver.chrome.driver", "/home/alberto/Descargas/chromedriver-linux64/chromedriver");
 		driver = new ChromeDriver();
 		js = (JavascriptExecutor) driver;
 		vars = new HashMap<String, Object>();
