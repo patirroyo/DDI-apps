@@ -17,6 +17,7 @@ public class StudentController {
 
 
 	@Autowired
+	private
 	StudentService service;
 
 	// localhost:8080/insertStudent

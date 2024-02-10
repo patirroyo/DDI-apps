@@ -19,6 +19,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.jdbc.JdbcTestUtils;
 
 import com.example.demo.model.Student;
@@ -36,42 +37,45 @@ class StudentRepositoryTest {
 	void testInsertShouldBeOk() {
 		
 		Student student = new Student(5, "Fernando", "Del Pino");
-		assertDoesNotThrow(() -> repo.save(student));// función anónima
+		assertDoesNotThrow(() -> repo.insert(student));// función anónima
+//		assertDoesNotThrow(() -> repo.save(student));// función anónima
 
 	}
 	@Test
 	void testInsertTheSameStudentTwice() {
 		Student student = new Student(5, "Fernando", "Del Pino");
-		
-		try {//esta es la vieja forma
-				// repo.insert(student);
-				// repo.insert(student);
-			repo.save(student);
-			repo.save(student);
-			//aqui jamas debería llegar
-			fail("este código no se debe ejecutar");
-		}
-		catch (Exception e) {
-		}
+//		
+//		try {//esta es la vieja forma
+//				// repo.insert(student);
+//				// repo.insert(student);
+//			repo.save(student);
+//			repo.save(student);
+//			//aqui jamas debería llegar
+//			fail("este código no se debe ejecutar");
+//		}
+//		catch (Exception e) {
+//		}
 		//manera actual
 		assertThrows(DuplicateKeyException.class, 
 				() -> {
-					// repo.insert(student);
-					// repo.insert(student);
-					repo.save(student);
-					repo.save(student);
+					 repo.insert(student);
+					 repo.insert(student);
+//					repo.save(student);
+//					repo.save(student);
 				}, "Name too long"
 			);
 	}
 	@Test
 	void testInsertStudentNameTooLong() {
-		Student student = new Student(5, "FernandoFernandoFernandoFernando"
-				+ "FernandoFernandoFernandoFernandoFernandoFernandoFernando"
-				+ "FernandoFernandoFernandoFernando", "Del Pino");
+		Student student = new Student(5, "Fernando Fernando " + "Fernando Fernando Fernando "
+				+ "Fernando Fernando Fernando Fernando Fernando " + "Fernando Fernando Fernando Fernando Fernando "
+				+ "Fernando Fernando Fernando Fernando Fernando " + "Fernando Fernando Fernando Fernando Fernando "
+				+ "Fernando Fernando Fernando Fernando Fernando " + "Fernando Fernando Fernando Fernando Fernando "
+				+ "Fernando Fernando Fernando Fernando Fernando " + "Fernando Fernando Fernando", "Del Pino");
 		assertThrows(DataIntegrityViolationException.class, 
 				() -> {
-					repo.save(student);
-					// repo.insert(student);
+//					repo.save(student);
+					 repo.insert(student);
 				}, "Name too long"
 			);
 
@@ -85,7 +89,8 @@ class StudentRepositoryTest {
 		//assertEquals(2, lista.size());
 		assertTrue(lista.isEmpty());
 		
-		repo.save(new Student(1, "Alberto", "Saz"));
+		repo.insert(new Student(1, "Alberto", "Saz"));
+//		repo.save(new Student(1, "Alberto", "Saz"));
 		lista = (List<Student>) repo.findAll();
 		assertFalse(lista.isEmpty());
 		assertEquals(1, lista.size());
@@ -95,15 +100,19 @@ class StudentRepositoryTest {
 	@Test
 	void testDelete() {
 		List<Student> lista = (List<Student>) repo.findAll();
-		assertTrue(lista.isEmpty());
+		System.out.println(lista);
+		assertEquals(0, lista.size());
 		
-		repo.save(new Student(1, "Alberto", "Saz"));
+		repo.insert(new Student(1, "Alberto", "Saz"));
+//		repo.save(new Student(1, "Alberto", "Saz"));
 		lista = (List<Student>) repo.findAll();
 		assertFalse(lista.isEmpty());
 		assertEquals(1, lista.size());
 		
-		repo.deleteById(1);
+		repo.delete(lista.get(0).getId());
+		//repo.deleteById(lista.get(0).getId());
 		lista = (List<Student>) repo.findAll();
+		assertEquals(0, lista.size());
 		assertTrue(lista.isEmpty());
 		
 		
@@ -111,6 +120,7 @@ class StudentRepositoryTest {
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
+		
 	}
 
 	@AfterAll
@@ -119,14 +129,16 @@ class StudentRepositoryTest {
 
 	@BeforeEach
 	void setUp() throws Exception {
+		//repo.deleteAll();
 		// repo = new StudentRepository();
 		// assertNotNull(template);
 		// repo.setJdbcTemplate(template);
-		JdbcTestUtils.deleteFromTables(template, "Students");//cada vez que hacemos un test, limpiamos la base de datos
+		JdbcTestUtils.deleteFromTables(template, "students");//cada vez que hacemos un test, limpiamos la base de datos
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
+
 		
 	}
 

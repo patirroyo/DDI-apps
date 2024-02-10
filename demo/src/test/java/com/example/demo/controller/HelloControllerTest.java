@@ -1,9 +1,9 @@
 package com.example.demo.controller;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
-
-import java.util.List;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -14,6 +14,7 @@ import org.springframework.ui.ExtendedModelMap;
 import org.springframework.ui.Model;
 
 import com.example.demo.model.Student;
+
 
 class HelloControllerTest {
 	
@@ -44,10 +45,6 @@ class HelloControllerTest {
 		assertEquals("hola desde thymeleaf", model.getAttribute("mensaje"));
 	}
 
-	@Test
-	void testIndex() {
-		fail("Not yet implemented");
-	}
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -59,6 +56,7 @@ class HelloControllerTest {
 
 	@BeforeEach
 	void setUp() throws Exception {
+		controller = new HelloController();
 	}
 
 	@AfterEach
