@@ -24,6 +24,7 @@ public class InsertAndDeleteSquirtleTest {
 		driver.manage().window().maximize();
 
 		// when
+		driver.findElement(By.id("id")).sendKeys("1");
 		driver.findElement(By.id("nombre")).sendKeys("Squirtl");
 		driver.findElement(By.id("apellido")).sendKeys("blastoise");
 		driver.findElement(By.xpath("//input[@value=\'Enviar datos\']")).click();

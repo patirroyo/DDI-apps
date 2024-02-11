@@ -26,9 +26,9 @@ public class StudentRepository {
 	JdbcTemplate jdbcTemplate;
 
 	public void insert(Student student) {
-		jdbcTemplate.update("insert into students(nombre, apellido) values(?, ?);", student.getNombre(),student.getApellido());
-//		jdbcTemplate.update("insert into students(id, nombre, apellido) values(?, ?, ?);", student.getId(),student.getNombre(),
-//				student.getApellido());
+		//jdbcTemplate.update("insert into students(nombre, apellido) values(?, ?);", student.getNombre(),student.getApellido());
+		jdbcTemplate.update("insert into students(id, nombre, apellido) values(?, ?, ?);", student.getId(),student.getNombre(),
+				student.getApellido());
 	}
 
 	public void update(Student student) {

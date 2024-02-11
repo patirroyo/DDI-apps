@@ -16,7 +16,8 @@
 		<span>Insertar o Actualizar estudiante:</span>
 		<br>
 		<form th:action="@{/insertStudent}" th:object="${student}">
-			<input type="number" th:field="*{id}" hidden/>
+			<span>ID:</span>
+			<input type="number" th:field="*{id}" />
 			<span>Nombre:</span>
 			<input type="text" th:field="*{nombre}"/>
 			<span>Apellido:</span>

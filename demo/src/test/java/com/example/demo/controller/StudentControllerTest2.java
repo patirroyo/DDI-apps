@@ -12,8 +12,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.test.web.servlet.RequestBuilder;
-import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*; 
 import org.springframework.web.servlet.ModelAndView;
@@ -28,12 +26,13 @@ class StudentControllerTest2 {
 	
 	@Autowired //viene con Spring por lo que lo voy a poder utilizar desde el principio
 	MockMvc mockmvc;//me permite simular una petición entera del modelo mvc, sin tener que hacer parte por parte como con selenium
+
 	
 	@Test
 	void testInsertStudentForm() {
 		//MockHttpServletRequestBuilder requestbuilder = MockMvcRequestBuilders.get("/insertStudent");//este objeto simula que le doy a un boton y simulo la petición hattp
 		MockHttpServletRequestBuilder requestbuilder = get("/insertStudent")
-															//.queryParam("id", "1")
+															.queryParam("id", "1")
 															.queryParam("nombre", "Alberto")
 															.queryParam("apellido", "Saz");
 		try {
@@ -59,6 +58,7 @@ class StudentControllerTest2 {
 
 	@BeforeEach
 	void setUp() throws Exception {
+
 	}
 
 	@AfterEach
