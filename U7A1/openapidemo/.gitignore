@@ -1,0 +1,5 @@
+/apiclient/build/
+/apiserver/build/
+/thinclient/build/
+/.gradle/
+/.idea/
