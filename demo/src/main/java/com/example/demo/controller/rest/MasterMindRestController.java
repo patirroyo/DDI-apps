@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -49,5 +50,11 @@ public class MasterMindRestController {
 		return new ResponseEntity<>(masterMind, HttpStatus.ACCEPTED);
 	}
 	
-	
+	@PostMapping
+	@RequestMapping(value= "/checkTries")
+	public ResponseEntity<MasterMind> checkLeftTries() {
+		return new ResponseEntity<>(masterMind, HttpStatus.CREATED);
+
+	}
+
 }

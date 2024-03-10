@@ -6,6 +6,8 @@ public class MasterMind {
 	private int size;
 	private int tries;
 	private String message;
+	private int lefttries;
+
 
 	public MasterMind(int size, int tries) {
 		this.size = size;
@@ -46,4 +48,12 @@ public class MasterMind {
 	public String getMessage() {
 		return this.message;
 	}
+	public int getLefttries() {
+		return lefttries;
+	}
+
+	public void setLefttries(int lefttries) {
+		this.lefttries = lefttries;
+	}
+
 }
