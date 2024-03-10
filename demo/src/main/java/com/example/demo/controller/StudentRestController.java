@@ -17,6 +17,7 @@ import com.example.demo.model.Student;
 import com.example.demo.service.StudentService;
 
 @RestController // para crear el RestController copiamos el controller y cambiamos esta etiqueta
+//@CrossOrigin(origins = "http://localhost:8080")
 @RequestMapping("/api") // todas la peticiones irán a /api
 public class StudentRestController {
 
