@@ -1,0 +1,268 @@
+{
+	"info": {
+		"_postman_id": "32492f99-d216-42af-a3e9-8fdac03b578b",
+		"name": "DragonBall",
+		"description": "Permite simular la recoleccion de bolas de dragon\n\nLas funciones list permiten conocer la ubicacion de las bolas de dragon en el mundo y las bolas de dragon que he recuperado mediante la llamada a dragonball/get (cada funcion vale un punto)\n\nLa función POST, solo se puede invocar correctamente si poseo todas las 7 bolas de dragon, una vez terminado el método las bolas ya no son de mi propiedad y pasan a estar desperdigadas por el mundo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32224321"
+	},
+	"item": [
+		{
+			"name": "List dragon balls spread around the world",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"list all dragon balls\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000)",
+							"    const jsonData = pm.response.json();",
+							"    pm.response.to.have.status(200);",
+							"    pm.expect(jsonData instanceof Array).to.eql(true);",
+							"    pm.expect(jsonData.length).to.lte(7);",
+							"});",
+							"",
+							"pm.test(\"elements contains ubicacion and numEstrellas property\", function () {",
+							"    const jsonData = pm.response.json();",
+							"    for(i=0;i<jsonData.lenght;i++){",
+							"        pm.expect(jsonData[i]).to.have.property('ubicacion');",
+							"        pm.expect(jsonData[i]).to.have.property('numEstrellas');",
+							"    } ",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/dragonball/radar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"dragonball",
+						"radar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List dragon balls I own",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"",
+							"pm.test(\"dragon balls I got\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000)",
+							"    pm.response.to.have.status(200);",
+							"    const jsonData = pm.response.json();",
+							"    pm.expect(jsonData instanceof Array).to.eql(true);",
+							"    pm.expect(jsonData.length).to.lte(7,\"no hay mas de 7 bolas de dragon\");",
+							"});",
+							"",
+							"pm.test(\"total balance is seven\", function () {",
+							"    const pmJsonData = pm.response.json();",
+							"     pm.sendRequest({",
+							"    url: 'http://localhost:8080/dragonball/radar'",
+							"        }, function (err, response) {",
+							"        const jsonData = response.json();",
+							"        pm.expect(jsonData instanceof Array).to.eql(true);",
+							"        const balance = jsonData.length+pmJsonData.length;",
+							"        pm.expect(balance).to.eql(7);",
+							"    });",
+							"  ",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/dragonball/owned",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"dragonball",
+						"owned"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Ball of 4 stardots",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"get ball 4 stardots\", function () {",
+							"    const jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('stardots');",
+							"    pm.expect(jsonData.stardots).to.eql(4);",
+							"    pm.expect(jsonData).to.have.property('found');",
+							"    pm.expect(jsonData.found).to.eql(true);",
+							"});",
+							"",
+							"",
+							"pm.test(\"dragonballs around word are reduced\", function () {",
+							"     pm.sendRequest({",
+							"    url: 'http://localhost:8080/dragonball/radar'",
+							"        }, function (err, response) {",
+							"        const jsonData = response.json();",
+							"        pm.expect(jsonData instanceof Array).to.eql(true);",
+							"        pm.expect(jsonData.length).to.lessThan(7);",
+							"    });",
+							"  ",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/dragonball/get?ball=4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"dragonball",
+						"get"
+					],
+					"query": [
+						{
+							"key": "ball",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Invoke dragon Shenron",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"",
+							"pm.test(\"invoke dragon\", function () {",
+							"",
+							"    pm.response.to.have.status(418);",
+							"",
+							"    pm.sendRequest({",
+							"    url: 'http://localhost:8080/dragonball/owned'",
+							"    }, function (err, response) {",
+							"        const jsonData = response.json();",
+							"        pm.expect(jsonData.length).to.be.eql(0)",
+							"    });",
+							"",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"// Definir una función para realizar cada solicitud con un retraso",
+							"function makeRequest(ballNumber, callback) {",
+							"    setTimeout(function () {",
+							"        pm.sendRequest(`http://localhost:8080/dragonball/get?ball=${ballNumber}`, function (err, response) {",
+							"            // Puedes realizar acciones adicionales con la respuesta si es necesario",
+							"            callback(err, response);",
+							"        });",
+							"    }, 100);",
+							"}",
+							"",
+							"// Realizar cada solicitud de forma secuencial",
+							"makeRequest(1, function (err, response) {",
+							"    makeRequest(2, function (err, response) {",
+							"        makeRequest(3, function (err, response) {",
+							"            makeRequest(4, function (err, response) {",
+							"                makeRequest(5, function (err, response) {",
+							"                    makeRequest(6, function (err, response) {",
+							"                        makeRequest(7, function (err, response) {",
+							"                            // Realizar la última solicitud después de completar todas las anteriores",
+							"                            pm.sendRequest({",
+							"                                url: 'http://localhost:8080/dragonball/owned'",
+							"                            }, function (err, response) {",
+							"                                const jsonData = response.json();",
+							"                                pm.expect(jsonData.length).to.be.eql(7);",
+							"                            });",
+							"                        });",
+							"                    });",
+							"                });",
+							"            });",
+							"        });",
+							"    });",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/dragonball/invokeDragon",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"dragonball",
+						"invokeDragon"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

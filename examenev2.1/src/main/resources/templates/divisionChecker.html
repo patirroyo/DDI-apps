@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<!-- NO me puedo olvidar el namespace de thyneleaf -->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>check division</title>
+</head>
+<body>
+	<form th:action="@{/division}" th:method="post" th:object="${examen}" >
+		Dividendo: <input type="text" th:field="*{dividendo}"/><br/>
+		Divisor: <input type="text" th:field="*{divisor}"/><br/>
+		<input type="submit"/>
+	</form>
+</body>
+</html>

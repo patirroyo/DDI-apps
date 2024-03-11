@@ -1,0 +1,142 @@
+{
+  "id": "ea827608-9a3b-4c16-a483-f9bc16dfdd06",
+  "version": "2.0",
+  "name": "ExamenAlberto",
+  "url": "http://localhost:8080",
+  "tests": [{
+    "id": "2c4e988d-9129-4993-ba54-a0b869f26e01",
+    "name": "TestAgeChecker",
+    "commands": [{
+      "id": "00a2e299-944d-405d-a589-33a6aca857dc",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "96983384-3fb8-4423-b756-56021a9a5d75",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Age checker",
+      "targets": [
+        ["linkText=Age checker", "linkText"],
+        ["css=a:nth-child(1)", "css:finder"],
+        ["xpath=//a[contains(text(),'Age checker')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/navigate?to=ageChecker')]", "xpath:href"],
+        ["xpath=//a", "xpath:position"],
+        ["xpath=//a[contains(.,'Age checker')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "bcb059f3-7994-4803-baa2-a8933198dd3e",
+      "comment": "",
+      "command": "type",
+      "target": "id=fechaNacimiento",
+      "targets": [
+        ["id=fechaNacimiento", "id"],
+        ["name=fechaNacimiento", "name"],
+        ["css=#fechaNacimiento", "css:finder"],
+        ["xpath=//input[@id='fechaNacimiento']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "1988-05-04"
+    }, {
+      "id": "eb2cdfd0-c217-4aa2-b8fb-d6afb9808c77",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//input[@type='submit']",
+      "targets": [
+        ["css=input:nth-child(3)", "css:finder"],
+        ["xpath=//input[@type='submit']", "xpath:attributes"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e2f364d0-d316-4cd9-b6d6-07c22fe5b2e4",
+      "comment": "",
+      "command": "verifyText",
+      "target": "id=msg",
+      "targets": [],
+      "value": "You should get a job, Slacker"
+    }]
+  }, {
+    "id": "a2eed3a1-e613-4e39-98f6-9e116de1cb5e",
+    "name": "TestDivisionChecker",
+    "commands": [{
+      "id": "c59dc1aa-c257-414e-9563-5759120854b4",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "bb7744cb-cfa1-4d3b-bdf0-9f4ad9900942",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Division checker",
+      "targets": [
+        ["linkText=Division checker", "linkText"],
+        ["css=a:nth-child(3)", "css:finder"],
+        ["xpath=//a[contains(text(),'Division checker')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/navigate?to=divisionChecker')]", "xpath:href"],
+        ["xpath=//a[2]", "xpath:position"],
+        ["xpath=//a[contains(.,'Division checker')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "4a742186-bcb4-41a3-994b-41adea2b6771",
+      "comment": "",
+      "command": "type",
+      "target": "id=dividendo",
+      "targets": [
+        ["id=dividendo", "id"],
+        ["name=dividendo", "name"],
+        ["css=#dividendo", "css:finder"],
+        ["xpath=//input[@id='dividendo']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "0"
+    }, {
+      "id": "c4f5c2be-361b-4bc1-9cda-63e8ba800d22",
+      "comment": "",
+      "command": "type",
+      "target": "id=divisor",
+      "targets": [
+        ["id=divisor", "id"],
+        ["name=divisor", "name"],
+        ["css=#divisor", "css:finder"],
+        ["xpath=//input[@id='divisor']", "xpath:attributes"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": "0"
+    }, {
+      "id": "d38b6871-b54f-4ace-851b-b725b40d494d",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//input[@type='submit']",
+      "targets": [
+        ["css=input:nth-child(5)", "css:finder"],
+        ["xpath=//input[@type='submit']", "xpath:attributes"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "83509710-193e-4e76-9996-f641568fbe5b",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=p",
+      "targets": [],
+      "value": "I guess, you shold not be here, but your tests"
+    }]
+  }],
+  "suites": [{
+    "id": "6e8bfc33-b478-4cde-a716-f3dac29b92b3",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["2c4e988d-9129-4993-ba54-a0b869f26e01"]
+  }],
+  "urls": ["http://localhost:8080/"],
+  "plugins": []
+}

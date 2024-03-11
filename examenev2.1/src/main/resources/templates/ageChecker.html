@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<!-- NO me puedo olvidar el namespace de thyneleaf -->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>check age</title>
+</head>
+<body>
+	<form th:action="@{/age}" th:object="${examen}" method="get" >
+		Fecha nacimiento: <input th:field="*{fechaNacimiento}" type="date"/><br/>
+		<input type="submit"/>
+	</form>
+</body>
+</html>
