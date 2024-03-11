@@ -1,0 +1,382 @@
+{
+	"info": {
+		"_postman_id": "7eeca342-4a8f-4427-a705-faa5bfc391b4",
+		"name": "JanKenPon",
+		"description": "Permite jugar a piedra papel o tijera\n\nLos metodos POST son posibles partidas individuales que se van guardando(cada método vale 0,5 puntos)\n\nLos metodos GET permiten listar las rondas que ha ganado el Jugador1 o el Jugador 2 (cada método vale 1 punto)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10114961"
+	},
+	"item": [
+		{
+			"name": "J2PapelGana",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"papel gana a piedra\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"    pm.response.to.have.status(202);",
+							"    const jsonData = pm.response.json();",
+							"    pm.expect(jsonData.winner).to.eql(\"jugador2\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/jankenpon/play?jugador1=piedra&jugador2=papel",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"jankenpon",
+						"play"
+					],
+					"query": [
+						{
+							"key": "jugador1",
+							"value": "piedra"
+						},
+						{
+							"key": "jugador2",
+							"value": "papel"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "J2PiedraGana",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"piedra gana a tijeras\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"    pm.response.to.have.status(202);",
+							"    const jsonData = pm.response.json();",
+							"    pm.expect(jsonData.winner).to.eql(\"jugador2\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/jankenpon/play?jugador1=tijeras&jugador2=piedra",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"jankenpon",
+						"play"
+					],
+					"query": [
+						{
+							"key": "jugador1",
+							"value": "tijeras"
+						},
+						{
+							"key": "jugador2",
+							"value": "piedra"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "J2TijerasGana",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"tijeras gana a papel\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"    pm.response.to.have.status(202);",
+							"    const jsonData = pm.response.json();",
+							"    pm.expect(jsonData.winner).to.eql(\"jugador2\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/jankenpon/play?jugador1=papel&jugador2=tijeras",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"jankenpon",
+						"play"
+					],
+					"query": [
+						{
+							"key": "jugador1",
+							"value": "papel"
+						},
+						{
+							"key": "jugador2",
+							"value": "tijeras"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "J1PapelGana",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"papel gana a piedra\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"    pm.response.to.have.status(202);",
+							"    const jsonData = pm.response.json();",
+							"    pm.expect(jsonData.winner).to.eql(\"jugador1\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/jankenpon/play?jugador1=papel&jugador2=piedra",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"jankenpon",
+						"play"
+					],
+					"query": [
+						{
+							"key": "jugador1",
+							"value": "papel"
+						},
+						{
+							"key": "jugador2",
+							"value": "piedra"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "J1PiedraGana",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"piedra gana a tijeras\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"    pm.response.to.have.status(202);",
+							"    const jsonData = pm.response.json();",
+							"    pm.expect(jsonData.winner).to.eql(\"jugador1\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/jankenpon/play?jugador1=piedra&jugador2=tijeras",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"jankenpon",
+						"play"
+					],
+					"query": [
+						{
+							"key": "jugador1",
+							"value": "piedra"
+						},
+						{
+							"key": "jugador2",
+							"value": "tijeras"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "J1TijerasGana",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"tijeras gana a papel\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"    pm.response.to.have.status(202);",
+							"    const jsonData = pm.response.json();",
+							"    pm.expect(jsonData.winner).to.eql(\"jugador1\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/jankenpon/play?jugador1=tijeras&jugador2=papel",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"jankenpon",
+						"play"
+					],
+					"query": [
+						{
+							"key": "jugador1",
+							"value": "tijeras"
+						},
+						{
+							"key": "jugador2",
+							"value": "papel"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Results for J1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"",
+							"pm.test(\"list all j1\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000)",
+							"    pm.response.to.have.status(200);",
+							"    pm.expect(jsonData instanceof Array).to.eql(true);",
+							"});",
+							"pm.test(\"Plays are from player 1\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(\"j1\").to.eql(jsonData[1].player);",
+							"    pm.expect(pm.request.url.getPath()).to.include(jsonData[1].player);",
+							"});",
+							"",
+							"pm.test(\"ronda property\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData[1]).to.have.property('ronda');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/jankenpon/results/j1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"jankenpon",
+						"results",
+						"j1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Results for J2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"",
+							"pm.test(\"list all j2\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000)",
+							"    pm.response.to.have.status(200);",
+							"    pm.expect(jsonData instanceof Array).to.eql(true);",
+							"});",
+							"pm.test(\"Plays are from player 2\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(\"j2\").to.eql(jsonData[1].player);",
+							"    pm.expect(pm.request.url.getPath()).to.include(jsonData[1].player);",
+							"});",
+							"",
+							"",
+							"pm.test(\"ronda property\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData[1]).to.have.property('ronda');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/jankenpon/results/j2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"jankenpon",
+						"results",
+						"j2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,26 +1,39 @@
 package examen.model;
 
 public class DragonBall {
-	public int number;
-	public boolean owned;
+	public int stardots;
+	public boolean found;
+	public String ubicacion;
+
 
 	public DragonBall() {
 	}
 
-	public int getNumber() {
-		return number;
+
+
+	public int getStardots() {
+		return stardots;
 	}
 
-	public void setNumber(int number) {
-		this.number = number;
+	public void setStardots(int stardots) {
+		this.stardots = stardots;
 	}
 
-	public boolean isOwned() {
-		return owned;
+	public boolean isFound() {
+		return found;
 	}
 
-	public void setOwned(boolean owned) {
-		this.owned = owned;
+	public void setFound(boolean found) {
+		this.found = found;
+	}
+
+
+	public String getUbicacion() {
+		return ubicacion;
+	}
+
+	public void setUbicacion(String ubicacion) {
+		this.ubicacion = ubicacion;
 	}
 
 
